@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  /* This creates the font-space-grotesk class */
+  --font-space-grotesk: "Space Grotesk", sans-serif;
+
+  /* You can also define your custom brand colors here */
+  --color-brand-cyan: #00dbe7;
+  --color-dark-bg: #131318;
+  --color-brand-purple: #c067ff;
+    --background-image-brand-gradient: linear-gradient(
+      135deg,
+      #99f7ff 0%,
+      #c97cff 100%
+    );
+}

@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 
 const PaymentSuccess = () => {
   const [copied, setCopied] = useState(false);
-
   // The JSON data from your image
   const jsonData = {
     status: "success",

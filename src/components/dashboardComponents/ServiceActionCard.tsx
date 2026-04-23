@@ -28,7 +28,7 @@ const ServiceActionCard = ({ name, price, icon }: ServiceActionCardProps) => {
           onClick={() => setIsModalOpen(true)}
           className="text-[9px] font-bold text-white bg-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-500 transition-all duration-300 active:scale-95 cursor-pointer"
         >
-          Use Service
+          Pay
         </button>
       </div>
 

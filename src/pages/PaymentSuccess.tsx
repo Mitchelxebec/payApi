@@ -52,7 +52,10 @@ const PaymentSuccess = () => {
             <button className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-3 px-6 rounded-xl text-sm transition-all flex items-center justify-center gap-2">
               <ExternalLink size={16} /> View Explorer
             </button>
-            <Link to="/dashboard" className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-200">
+            <Link
+              to="/dashboard"
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-6 rounded-xl text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-indigo-200"
+            >
               <RefreshCw size={16} /> New Request
             </Link>
           </div>

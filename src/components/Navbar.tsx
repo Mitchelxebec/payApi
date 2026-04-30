@@ -1,9 +1,9 @@
 import { useState } from "react";
 import logo from "../assets/logo.png";
-import Button from "./Button";
 import { Link, NavLink } from "react-router-dom";
 import type { NavLinkRenderProps } from "react-router-dom";
 import { Menu } from "lucide-react"; // Import Menu icon
+import { WalletConnect } from "./WalletConnect";
 
 interface NavbarProps {
   toggleSidebar?: () => void; // Made optional so it doesn't break other pages
@@ -54,7 +54,7 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
         {/* Right Side: Button + Mobile Nav Toggle */}
         <div className="flex items-center gap-4">
           <div className="hidden md:block">
-            <Button children="Connect Wallet" />
+            <WalletConnect />
           </div>
 
           {/* Hamburger Icon for Mobile Overlay Menu */}
@@ -112,7 +112,7 @@ const Navbar = ({ toggleSidebar }: NavbarProps) => {
             </li>
           ))}
           <div className="pt-4 border-t border-white/5">
-            <Button children="Connect Wallet" className="w-full" />
+            <WalletConnect />
           </div>
         </ul>
       </div>

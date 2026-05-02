@@ -1,5 +1,7 @@
 // import type React from "react";
 
+import type { ReactNode } from "react";
+
 export interface Transaction {
   id: string;
   service: string;
@@ -8,7 +10,7 @@ export interface Transaction {
   status: "Success" | "Pending" | "Failed";
   hash: string;
   timestamp: string;
-  icon: "search" | "credit" | "activity";
+  icon: ReactNode;
 }
 
 export interface TransactionContextType {

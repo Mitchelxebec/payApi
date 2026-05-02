@@ -1,4 +1,4 @@
-import { Activity, Box, CreditCard, Search } from "lucide-react";
+import { Activity, Box, CreditCard } from "lucide-react";
 import { useTransactions } from "../../context/transactions/useTransaction";
 
 const TransactionTable = () => {
@@ -10,11 +10,11 @@ const TransactionTable = () => {
 
   console.log(context);
 
-  const icons = {
-  search: <Search size={16} />,
-  credit: <CreditCard size={16} />,
-  activity: <Activity size={16} />,
-};
+//   const icons = {
+//   search: <Search size={16} />,
+//   credit: <CreditCard size={16} />,
+//   activity: <Activity size={16} />,
+// };
   
   return (
     <div className="bg-[#1A1A22] rounded-2xl border border-white/5 p-6 w-full font-space-grotesk">

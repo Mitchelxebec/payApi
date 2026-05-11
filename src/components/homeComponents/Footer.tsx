@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 const Footer = () => {
@@ -22,20 +23,20 @@ const Footer = () => {
             <h4 className="font-bold text-sm mb-6">Network</h4>
             <ul className="space-y-4 text-sm text-gray-400">
               <li>
-                <a
-                  href="/dashboard"
+                <Link
+                  to="/dashboard"
                   className="hover:text-[#8884FF] transition-colors"
                 >
                   API Directory
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/docs"
+                <Link
+                  to="/docs"
                   className="hover:text-[#8884FF] transition-colors"
                 >
                   Documentation
-                </a>
+                </Link>
               </li>
               <li>
                 <a

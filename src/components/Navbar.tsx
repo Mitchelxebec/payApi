@@ -11,7 +11,7 @@ interface NavbarProps {
 
 const Navbar = ({ toggleSidebar }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const navLinks = ["Dashboard", "Docs", "Billing"];
+  const navLinks = ["Dashboard", "Docs"];
 
   const activeStyle = ({ isActive }: NavLinkRenderProps): string =>
     isActive

@@ -3,8 +3,9 @@ import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Docs from "./pages/docs/Docs";
-import Billing from "./pages/Billing";
-import PaymentSuccess from "./pages/PaymentSuccess";
+import VerifyPayment from "./pages/verifyPayment";
+import ApiKeys from "./pages/ApiKey";
+
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/docs" element={<Docs />} />
-        <Route path="/billing" element={<Billing />} />
-        <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/verify-payment" element={<VerifyPayment />} />
+        <Route path="/api-keys" element={<ApiKeys />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

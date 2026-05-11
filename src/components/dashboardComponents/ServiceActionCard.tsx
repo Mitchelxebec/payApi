@@ -1,10 +1,10 @@
-import { useState, type ReactNode } from "react";
-import PaymentModal from "./PaymentModal"; // Import the modal
+import { useState } from "react";
+import PaymentModal from "./PaymentModal";
 
 interface ServiceActionCardProps {
   name: string;
   price: string;
-  icon: ReactNode;
+  icon: React.ReactNode;
 }
 
 const ServiceActionCard = ({ name, price, icon }: ServiceActionCardProps) => {
@@ -22,8 +22,6 @@ const ServiceActionCard = ({ name, price, icon }: ServiceActionCardProps) => {
             <p className="text-[10px] text-gray-500">{price}</p>
           </div>
         </div>
-
-        {/* Changed from Link to Button to trigger state */}
         <button
           onClick={() => setIsModalOpen(true)}
           className="text-[9px] font-bold text-white bg-blue-600 px-3 py-1.5 rounded-lg hover:bg-blue-500 transition-all duration-300 active:scale-95 cursor-pointer"
@@ -32,10 +30,10 @@ const ServiceActionCard = ({ name, price, icon }: ServiceActionCardProps) => {
         </button>
       </div>
 
-      {/* Render the Modal */}
       <PaymentModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
+        service={name}
       />
     </>
   );

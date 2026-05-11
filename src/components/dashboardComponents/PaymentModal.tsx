@@ -7,11 +7,12 @@ import { sendPayment } from "../../lib/stellarPayment";
 interface PaymentModalProps {
   isOpen: boolean;
   onClose: () => void;
+  service: string;
 }
 
 type TxState = "idle" | "signing" | "submitting" | "success" | "error";
 
-const PaymentModal = ({ isOpen, onClose }: PaymentModalProps) => {
+const PaymentModal = ({ isOpen, onClose, service }: PaymentModalProps) => {
   const navigate = useNavigate();
   const { address } = useWallet();
 
@@ -38,22 +39,21 @@ const PaymentModal = ({ isOpen, onClose }: PaymentModalProps) => {
     try {
       setError(null);
 
-      // 1️⃣ Waiting for user signature
       setTxState("signing");
 
       const hash = await sendPayment({
         from: address,
-        to: "GAFEQKV5B4I33K67UQ2EVMP7CGHYTVICPRSQSDMQSQOYDYCIMWNJLJP7", // replace with real address
+        to: "GA6LETANDEHCUH7YN63IH4DHV7VTUT5M7XW5L3H4NTYGTXBFYRCQEKVX",
         amount: "1",
       });
 
-      // 2️⃣ Submitted to network
       setTxState("success");
       setTxHash(hash);
 
-      // Optional: redirect after short delay
       setTimeout(() => {
-        navigate(`/payment-success?tx=${hash}`);
+        navigate(
+          `/verify-payment?tx=${hash}&service=${encodeURIComponent(service)}`,
+        );
         onClose();
       }, 1500);
     } catch (err: unknown) {
@@ -70,7 +70,6 @@ const PaymentModal = ({ isOpen, onClose }: PaymentModalProps) => {
     }
   };
 
-  // 🔥 Dynamic button content
   const renderButtonContent = () => {
     switch (txState) {
       case "signing":
@@ -99,7 +98,6 @@ const PaymentModal = ({ isOpen, onClose }: PaymentModalProps) => {
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
       <div className="bg-[#1c2127] w-full max-w-md rounded-3xl p-8 border border-white/10 shadow-2xl relative">
-        {/* Close */}
         <button
           onClick={onClose}
           className="absolute top-6 right-6 text-gray-500 hover:text-white"
@@ -115,7 +113,6 @@ const PaymentModal = ({ isOpen, onClose }: PaymentModalProps) => {
           Add credits to your API consumption vault
         </p>
 
-        {/* Payment Options */}
         <div className="space-y-4">
           <label className="flex items-center justify-between p-4 bg-white/5 rounded-2xl border border-cyan-400/30 cursor-pointer">
             <div className="flex items-center gap-4">
@@ -154,7 +151,6 @@ const PaymentModal = ({ isOpen, onClose }: PaymentModalProps) => {
           </label>
         </div>
 
-        {/* Button */}
         <button
           onClick={handleProceed}
           disabled={txState === "signing" || txState === "submitting"}
@@ -163,7 +159,6 @@ const PaymentModal = ({ isOpen, onClose }: PaymentModalProps) => {
           {renderButtonContent()}
         </button>
 
-        {/* Status Messages */}
         {txHash && (
           <p className="text-green-400 text-xs mt-4 text-center">
             Tx: {txHash.slice(0, 10)}...

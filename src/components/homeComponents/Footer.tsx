@@ -65,24 +65,24 @@ const Footer = () => {
             <h4 className="font-bold text-sm mb-6">Legal</h4>
             <ul className="space-y-4 text-sm text-gray-400">
               <li>
-                <a href="#" className="hover:text-[#8884FF] transition-colors">
+                <Link to="#" className="hover:text-[#8884FF] transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-[#8884FF] transition-colors">
+                <Link to="#" className="hover:text-[#8884FF] transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-[#8884FF] transition-colors">
+                <Link to="#" className="hover:text-[#8884FF] transition-colors">
                   Service Level Agreement
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-[#8884FF] transition-colors">
+                <Link to="#" className="hover:text-[#8884FF] transition-colors">
                   Compliance
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

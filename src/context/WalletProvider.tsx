@@ -24,28 +24,20 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
   const [isConnecting, setIsConnecting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // 🔥 FUNDING HOOK
   const {
     state: fundingState,
     error: fundingError,
     fundWallet,
   } = useWalletFunding();
 
-  // 🔥 BALANCE STATE (GLOBAL)
   const [balance, setBalance] = useState<string | null>(null);
   const [isBalanceLoading, setIsBalanceLoading] = useState(false);
 
-  // ✅ FETCH BALANCE (stable + reusable)
   const fetchBalance = useCallback(async (addr: string) => {
     try {
       setIsBalanceLoading(true);
-
       const account = await server.loadAccount(addr);
-
-      const xlmBalance = account.balances.find(
-        (b) => b.asset_type === "native",
-      );
-
+      const xlmBalance = account.balances.find((b) => b.asset_type === "native");
       setBalance(xlmBalance?.balance ?? "0");
     } catch (err) {
       console.error("Balance fetch failed:", err);
@@ -54,31 +46,8 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  // ✅ POLLING (no flicker, no reset)
-  useEffect(() => {
-    if (!address) return;
-
-    fetchBalance(address);
-
-    const interval = setInterval(() => {
-      fetchBalance(address);
-    }, 15000);
-
-    return () => clearInterval(interval);
-  }, [address, fetchBalance]);
-
-  // ✅ MANUAL REFRESH (after funding)
-  const refreshBalance = async () => {
-    if (!address) return;
-    await fetchBalance(address);
-  };
-
-  // ✅ RESTORE SESSION
-  useEffect(() => {
-    checkConnection();
-  }, []);
-
-  const checkConnection = async () => {
+  // ✅ RESTORE SESSION — declared before the useEffect that calls it
+  const checkConnection = useCallback(async () => {
     const allowed = await isAllowed();
 
     if (!allowed.isAllowed) {
@@ -104,6 +73,35 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
       signAuthEntry,
     });
     setIsConnectedState(true);
+  }, []);
+
+  useEffect(() => {
+    const init = async () => {
+      await checkConnection();
+    };
+    init();
+  }, [checkConnection]);
+
+  // ✅ POLLING — fetchBalance wrapped in a local async fn to avoid direct setState in effect
+  useEffect(() => {
+    if (!address) return;
+
+    const run = async () => {
+      await fetchBalance(address);
+    };
+
+    run();
+
+    const interval = setInterval(() => {
+      run();
+    }, 15000);
+
+    return () => clearInterval(interval);
+  }, [address, fetchBalance]);
+
+  const refreshBalance = async () => {
+    if (!address) return;
+    await fetchBalance(address);
   };
 
   const connectWallet = async () => {
@@ -147,11 +145,8 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
     setBalance(null);
   };
 
-  // 🔥 FUND + AUTO REFRESH BALANCE
   const handleFundWallet = async (addr: string) => {
     await fundWallet(addr);
-
-    // wait for blockchain sync
     setTimeout(() => {
       refreshBalance();
     }, 3000);
@@ -168,11 +163,9 @@ export const WalletProvider = ({ children }: { children: React.ReactNode }) => {
         error,
         connectWallet,
         disconnectWallet,
-
         fundWallet: handleFundWallet,
         fundingState,
         fundingError,
-
         balance,
         isBalanceLoading,
         refreshBalance,

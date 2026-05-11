@@ -17,12 +17,6 @@ const Home = () => {
         className="min-h-screen text-white"
       >
         <div className="max-w-7xl mx-auto px-6 py-24 flex flex-col items-center text-center gap-6">
-          {/* Status Badge */}
-          <div className="w-fit border border-gray-700 bg-gray-800/40 px-3 py-1 rounded-full text-[10px] uppercase tracking-widest flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-            Live on Mainnet
-          </div>
-
           {/* Heading */}
           <h1 className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight leading-tight">
             Pay per use. <br />

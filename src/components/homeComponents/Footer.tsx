@@ -39,24 +39,24 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="https://github.com/Mitchelxebec/payApi"
+                <Link
+                  to="https://github.com/Mitchelxebec/payApi"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-[#8884FF] transition-colors"
                 >
                   GitHub
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="https://horizon-testnet.stellar.org"
+                <Link
+                  to="https://horizon-testnet.stellar.org"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-[#8884FF] transition-colors"
                 >
                   Stellar Explorer
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

@@ -9,12 +9,8 @@ import {
   X,
   Key,
   Copy,
-  CreditCard,
-  CheckCircle,
-  AlertCircle,
 } from "lucide-react";
 
-import StatCard from "../components/dashboardComponents/StatCard";
 import SidebarLink from "../components/dashboardComponents/SidebarLink";
 import ServiceActionCard from "../components/dashboardComponents/ServiceActionCard";
 import TransactionSection from "../components/dashboardComponents/TransactionSection";
@@ -177,38 +173,6 @@ const Dashboard = () => {
                     (isRich ? "Wallet Funded" : "Fund Wallet")}
                 </button>
               </div>
-            </div>
-
-            {/* Stat Cards */}
-            <div className="grid grid-cols-2 gap-3">
-              <StatCard
-                label="Total Spent"
-                value="$1,248.62"
-                sub="SPENT"
-                icon={<CreditCard size={16} />}
-                color="border-brand-purple"
-              />
-              <StatCard
-                label="API Calls"
-                value="842k"
-                sub="24H"
-                icon={<Activity size={16} />}
-                color="border-brand-cyan"
-              />
-              <StatCard
-                label="Success"
-                value="99.8%"
-                sub="STABLE"
-                icon={<CheckCircle size={16} />}
-                color="border-green-500"
-              />
-              <StatCard
-                label="Failed"
-                value="24"
-                sub="MINOR"
-                icon={<AlertCircle size={16} />}
-                color="border-red-500"
-              />{" "}
             </div>
           </div>
 

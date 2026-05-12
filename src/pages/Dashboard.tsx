@@ -133,7 +133,7 @@ const Dashboard = () => {
                         ? "Connect Wallet"
                         : isBalanceLoading && !balance
                           ? "Syncing..."
-                          : balance}
+                          : Number(balance).toFixed(2)}
                     </span>
                     {address && (
                       <span className="text-4xl font-bold text-cyan-400">
@@ -189,7 +189,7 @@ const Dashboard = () => {
                   <ServiceActionCard
                     key={svc.name}
                     name={svc.name}
-                    price={`${svc.priceInXLM} XLM / req`}
+                    price={`${parseFloat(svc.priceInXLM).toFixed(2)} XLM / req`}
                     priceInXLM={svc.priceInXLM}
                     icon={
                       svc.name === "AI Search API" ? (

@@ -1,5 +1,6 @@
 const BASE_URL = import.meta.env.VITE_API_URL;
 
+console.log(BASE_URL);
 export const fetchServices = async () => {
   const res = await fetch(`${BASE_URL}/api/v1/auth/services`);
   const data = await res.json();

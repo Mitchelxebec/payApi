@@ -45,7 +45,12 @@ export async function sendPayment({
   });
 
   if (signed.error) {
-    throw new Error(signed.error);
+    // signed.error can be an object — extract a readable message
+    const errMsg =
+      typeof signed.error === "string"
+        ? signed.error
+        : (signed.error as any)?.message ?? "Transaction was cancelled";
+    throw new Error(errMsg);
   }
 
   //   5. Rebuild signed transaction

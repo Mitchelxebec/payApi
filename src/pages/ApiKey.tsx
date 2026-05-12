@@ -6,8 +6,6 @@ import {
   Menu,
   X,
   Trash2,
-  Copy,
-  Check,
   Loader2,
 } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -36,7 +34,6 @@ const SERVICE_COLORS: Record<string, string> = {
 
 const ApiKeys = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
   const [keys, setKeys] = useState<ApiKey[]>([]);
   const [revoking, setRevoking] = useState<string | null>(null);
   const [fetched, setFetched] = useState(false);
@@ -47,9 +44,7 @@ const ApiKeys = () => {
   const toggleSidebar = () => setIsSidebarOpen((p) => !p);
 
   useEffect(() => {
-    if (!address) {
-      return;
-    }
+    if (!address) return;
 
     fetch(`${API_BASE}/api/v1/auth/keys`, {
       headers: { "x-wallet-address": address },
@@ -62,12 +57,7 @@ const ApiKeys = () => {
       .finally(() => setFetched(true));
   }, [address]);
 
-  const loading = address && !fetched
-  const handleCopy = (key: ApiKey) => {
-    navigator.clipboard.writeText(key.keyHash);
-    setCopiedId(key._id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
+  const loading = address && !fetched;
 
   const handleRevoke = async (key: ApiKey) => {
     if (!address) return;
@@ -191,20 +181,10 @@ const ApiKeys = () => {
                         {key.service}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-500">
+                    <div className="text-gray-500">
                       <span className="text-xs font-mono">
                         {key.keyHash.slice(0, 8)}••••••••{key.keyHash.slice(-4)}
                       </span>
-                      <button
-                        onClick={() => handleCopy(key)}
-                        className="hover:text-gray-300 transition-colors"
-                      >
-                        {copiedId === key._id ? (
-                          <Check size={12} className="text-green-400" />
-                        ) : (
-                          <Copy size={12} />
-                        )}
-                      </button>
                     </div>
                   </div>
 

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import {
   LayoutDashboard,
   FileText,
@@ -19,7 +19,7 @@ import SidebarLink from "../components/dashboardComponents/SidebarLink";
 import ServiceActionCard from "../components/dashboardComponents/ServiceActionCard";
 import TransactionSection from "../components/dashboardComponents/TransactionSection";
 import { WalletConnect } from "../components/WalletConnect";
-
+import { fetchServices } from "../lib/api";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { WalletContext } from "../context/WalletContext";
@@ -29,6 +29,14 @@ const Dashboard = () => {
   const [copiedAddr, setCopiedAddr] = useState(false);
 
   const wallet = useContext(WalletContext);
+  const [services, setServices] = useState<
+    { name: string; priceInXLM: string }[]
+  >([]);
+
+  useEffect(() => {
+    fetchServices().then(setServices).catch(console.error);
+  }, []);
+
   if (!wallet) return null;
 
   const { address, balance, isBalanceLoading, fundWallet, fundingState } =
@@ -210,21 +218,27 @@ const Dashboard = () => {
               Available Services
             </h3>
             <div className="space-y-3">
-              <ServiceActionCard
-                name="AI Search API"
-                price="$0.01 / req"
-                icon={<Search size={18} />}
-              />
-              <ServiceActionCard
-                name="News API"
-                price="$0.02 / req"
-                icon={<FileText size={18} />}
-              />
-              <ServiceActionCard
-                name="Crypto API"
-                price="$0.01 / req"
-                icon={<Activity size={18} />}
-              />
+              {services.length === 0 ? (
+                <p className="text-gray-500 text-sm">Loading services...</p>
+              ) : (
+                services.map((svc) => (
+                  <ServiceActionCard
+                    key={svc.name}
+                    name={svc.name}
+                    price={`${svc.priceInXLM} XLM / req`}
+                    priceInXLM={svc.priceInXLM}
+                    icon={
+                      svc.name === "AI Search API" ? (
+                        <Search size={18} />
+                      ) : svc.name === "News API" ? (
+                        <FileText size={18} />
+                      ) : (
+                        <Activity size={18} />
+                      )
+                    }
+                  />
+                ))
+              )}
             </div>
           </div>
 

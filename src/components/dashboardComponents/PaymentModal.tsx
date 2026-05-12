@@ -8,11 +8,12 @@ interface PaymentModalProps {
   isOpen: boolean;
   onClose: () => void;
   service: string;
+  amount: string;
 }
 
 type TxState = "idle" | "signing" | "submitting" | "success" | "error";
 
-const PaymentModal = ({ isOpen, onClose, service }: PaymentModalProps) => {
+const PaymentModal = ({ isOpen, onClose, service, amount }: PaymentModalProps) => {
   const navigate = useNavigate();
   const { address } = useWallet();
 
@@ -43,8 +44,8 @@ const PaymentModal = ({ isOpen, onClose, service }: PaymentModalProps) => {
 
       const hash = await sendPayment({
         from: address,
-        to: "GA6LETANDEHCUH7YN63IH4DHV7VTUT5M7XW5L3H4NTYGTXBFYRCQEKVX",
-        amount: "1",
+        to: import.meta.env.VITE_STELLAR_RECEIVER,
+        amount,
       });
 
       setTxState("success");

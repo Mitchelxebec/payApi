@@ -4,10 +4,16 @@ import PaymentModal from "./PaymentModal";
 interface ServiceActionCardProps {
   name: string;
   price: string;
+  priceInXLM: string;
   icon: React.ReactNode;
 }
 
-const ServiceActionCard = ({ name, price, icon }: ServiceActionCardProps) => {
+const ServiceActionCard = ({
+  name,
+  price,
+  icon,
+  priceInXLM,
+}: ServiceActionCardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -34,6 +40,7 @@ const ServiceActionCard = ({ name, price, icon }: ServiceActionCardProps) => {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         service={name}
+        amount={priceInXLM}
       />
     </>
   );

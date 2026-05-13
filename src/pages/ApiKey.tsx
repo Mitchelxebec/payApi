@@ -118,7 +118,7 @@ const ApiKeys = () => {
       </aside>
 
       <main className="flex-1 flex flex-col min-w-0 overflow-y-auto h-screen">
-        <header className="h-20 border-b border-white/5 flex items-center justify-between px-4 lg:px-8 bg-[#0b0e11]/50 backdrop-blur sticky top-0 z-30">
+        <header className="h-20 border-b border-white/5 flex items-center justify-between px-4 lg:px-8 py-5 bg-[#0b0e11]/50 backdrop-blur sticky top-0 z-30">
           <button className="lg:hidden" onClick={toggleSidebar}>
             <Menu size={28} />
           </button>

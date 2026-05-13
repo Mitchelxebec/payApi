@@ -3,7 +3,6 @@ import {
   LayoutDashboard,
   FileText,
   Search,
-  Bell,
   Activity,
   Menu,
   X,
@@ -111,7 +110,6 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <Bell size={20} className="text-gray-400" />
             <WalletConnect />
           </div>
         </header>

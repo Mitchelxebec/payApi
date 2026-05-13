@@ -45,6 +45,15 @@ const VerifyPayment = () => {
 
       setApiKey(data.apiKey);
       setStatus("success");
+
+      // Redirect to playground with key and service
+      if (data.apiKey) {
+        setTimeout(() => {
+          navigate(
+            `/playground?service=${encodeURIComponent(service)}&key=${data.apiKey}`,
+          );
+        }, 1500);
+      }
     } catch (err: unknown) {
       const message =
         err instanceof Error ? err.message : "Verification failed";

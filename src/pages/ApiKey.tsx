@@ -7,6 +7,7 @@ import {
   X,
   Trash2,
   Loader2,
+  FlaskConical,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import SidebarLink from "../components/dashboardComponents/SidebarLink";
@@ -109,6 +110,9 @@ const ApiKeys = () => {
               icon={<LayoutDashboard size={20} />}
               label="Dashboard"
             />
+            <Link to="/playground">
+              <SidebarLink icon={<FlaskConical size={20} />} label="API Playground" />
+            </Link>
           </Link>
           <SidebarLink icon={<Key size={20} />} label="API Keys" active />
           <Link to="/docs">

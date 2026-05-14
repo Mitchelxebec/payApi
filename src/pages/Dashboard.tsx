@@ -6,6 +6,7 @@ import {
   Activity,
   Menu,
   X,
+  FlaskConical,
   Key,
   Copy,
 } from "lucide-react";
@@ -59,9 +60,8 @@ const Dashboard = () => {
 
       {/* SIDEBAR */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#0b0e11] border-r border-white/5 flex flex-col p-6 transition-transform duration-300 lg:sticky lg:translate-x-0 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#0b0e11] border-r border-white/5 flex flex-col p-6 transition-transform duration-300 lg:sticky lg:translate-x-0 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
       >
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
@@ -83,6 +83,9 @@ const Dashboard = () => {
           />
           <Link to="/api-keys">
             <SidebarLink icon={<Key size={20} />} label="API Keys" />
+          </Link>
+          <Link to="/playground">
+            <SidebarLink icon={<FlaskConical size={20} />} label="API Playground" />
           </Link>
           <Link to="/docs">
             <SidebarLink icon={<FileText size={20} />} label="Docs" />
